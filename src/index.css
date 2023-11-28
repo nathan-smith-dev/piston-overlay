@@ -1,0 +1,156 @@
+html {
+  width: 100%;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 80%;
+}
+
+.row {
+  display: flex;
+  height: 25%;
+}
+
+.piston {
+  display: flex;
+  width: 100%;
+}
+
+.piston-container {
+  display: flex;
+  width: 85%;
+}
+
+.cylinder-identifier {
+  min-width: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 3px solid black;
+}
+
+.intake, .compression, .power, .exhaust {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intake {
+  background-color: #24AFEF;
+}
+
+.compression {
+  background-color: #2EB150;
+}
+
+.power {
+  background-color: #F90F00;
+}
+
+.exhaust {
+  background-color: #974808;
+}
+
+.cyl-input {
+  width: 1rem;
+}
+
+.form form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.firing-order {
+  display: flex
+}
+
+label {
+  margin-right: 0.5rem
+}
+
+label, input, select, button {
+  margin-right: 0.25rem
+}
+
+button {
+  background-color: #EA4C89;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:hover,
+button:focus {
+  background-color: #F082AC;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#cyl-form-container {
+  padding-top: 1rem;
+}
+
+/* Media Queries */
+@media (min-width: 100px) and (max-width: 300px) {
+  .piston-container {
+    width: 80%; 
+  }
+}
+
+@media (min-width: 300px) and (max-width: 550px) {
+  .piston-container {
+    width: 85%;
+  }
+}
+
+@media(min-width: 550px) and (max-width: 850px) {
+  .piston-container {
+    width: 90%;
+  }
+}
+
+@media(min-width: 850px) {
+  .piston-container {
+    width: 92%;
+  }
+}

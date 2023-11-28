@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Piston Overlays by Nate Smith</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="cyl-form-container" class="form">
+        <form id="cyl-form">
+          <div class="cylinder-count">
+            <label for="cylinder-count"># of Cylinders:</label>
+            <select name="cylinder-count" id="cylinder-count">
+              <option value="3">3</option>
+              <option selected value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="8">8</option>
+            </select>
+          </div>
+          <div class="firing-order">
+            <label for="firing-order">Firing Order:</label>
+            <div class="firing-order-inputs"></div>
+          </div>
+          <div class="slidecontainer">
+            <label for="opacity">Opacity:</label>
+            <input
+              type="range"
+              min="40"
+              max="100"
+              value="100"
+              class="slider"
+              id="opacity"
+            />
+          </div>
+          <button id="generate">Generate</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
