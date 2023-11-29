@@ -33,10 +33,17 @@ const generateElement = (html) => {
   return template.content;
 };
 
-const generatePistonRowHtml = (pistonNumber, startingStroke) => {
+const generatePistonRowHtml = (
+  pistonNumber,
+  startingStroke,
+  pistonCount,
+  isSync
+) => {
   return `
-    <div class="row">
-      <div class="cylinder-identifier">${pistonNumber}</div>
+    <div class="row" style="height:${(1 / pistonCount) * 100}%">
+      <div class="cylinder-identifier ${
+        isSync ? 'sync-cyl' : ''
+      }">${pistonNumber}</div>
       <div class="piston-container">
         <div class="piston">
           ${chooseStroke(startingStroke)}
@@ -49,7 +56,12 @@ const generatePistonRowHtml = (pistonNumber, startingStroke) => {
 const generatePistonRows = (numberOfPistons, firingOrder) => {
   let strBuilder = '';
   for (let i = 0; i < numberOfPistons; i++) {
-    strBuilder += generatePistonRowHtml(firingOrder[i], numberOfPistons - i);
+    strBuilder += generatePistonRowHtml(
+      firingOrder[i],
+      numberOfPistons - i,
+      numberOfPistons,
+      i == 0
+    );
   }
   return strBuilder;
 };
@@ -92,7 +104,6 @@ form.addEventListener('submit', (event) => {
 
   const row = document.querySelector('.container');
   let child = row.firstElementChild;
-  console.log(child.id);
   while (child && child.id !== 'cyl-form-container') {
     row.removeChild(child);
     child = row.firstElementChild;
