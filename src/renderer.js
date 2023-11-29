@@ -46,7 +46,7 @@ const generatePistonRowHtml = (
       }">${pistonNumber}</div>
       <div class="piston-container">
         <div class="piston">
-          ${chooseStroke(startingStroke)}
+          ${chooseStroke(startingStroke, pistonCount)}
         </div>
       </div>
     </div>
@@ -70,17 +70,79 @@ const shiftArray = (arr, target) => {
   return arr.concat(arr.splice(0, target));
 };
 
-const chooseStroke = (index) => {
-  const strokes = [
-    `<div class="power">P</div>`,
-    `<div class="exhaust">E</div>`,
-    `<div class="intake">I</div>`,
-    `<div class="compression">C</div>`,
-  ];
-  const shiftedStrokes = shiftArray(strokes, index);
+const chooseStroke = (index, numberOfPistons) => {
+  const strokes = {
+    3: [
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+    ],
+    4: [
+      `<div class="power">P</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="compression">C</div>`,
+    ],
+    5: [
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+    ],
+    6: [
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+    ],
+    8: [
+      `<div class="power">P</div>`,
+      `<div class="power">P</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="exhaust">E</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="intake">I</div>`,
+      `<div class="compression">C</div>`,
+      `<div class="compression">C</div>`,
+    ],
+  };
+  const shiftedStrokes = shiftArray(strokes[numberOfPistons], index);
 
   let strBuilder = '';
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < shiftedStrokes.length; i++) {
     strBuilder += shiftedStrokes[i];
   }
 
