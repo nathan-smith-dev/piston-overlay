@@ -141,6 +141,12 @@ const shiftArray = (arr, target) => {
   return sliced.concat(arrCopy);
 };
 
+const shiftArrayBackwards = (arr, target) => {
+  const arrCopy = [...arr];
+  const sliced = arrCopy.splice(0, target);
+  return arrCopy.concat(sliced);
+};
+
 const chooseStroke = (index, numberOfPistons) => {
   const shiftedStrokes = shiftArray(strokes[numberOfPistons], index);
 
@@ -152,13 +158,14 @@ const chooseStroke = (index, numberOfPistons) => {
   return strBuilder;
 };
 
-const generateFiringOrderInput = () => {
+const generateFiringOrderInput = (defaultValue) => {
   return generateElement(`<input
-              class="cyl-input"
+              class="cyl-input cyl-input-format"
               pattern="\d{1}"
               type="number"
               maxlength="1"
               name="firing-order-1"
+              ${defaultValue ? `value="${defaultValue}"` : ''}
             />`);
 };
 
@@ -179,7 +186,9 @@ form.addEventListener('submit', (event) => {
   document
     .querySelectorAll('.cyl-input')
     .forEach((el) => firingOrder.push(+el.value));
-  const pistonHtml = generatePistonRows(cylinderCountNum, firingOrder);
+  const syncCylinder = document.querySelector('#sync-cyl');
+  const shiftedFiringOrder = shiftArrayBackwards(firingOrder, firingOrder.indexOf(+syncCylinder.value));
+  const pistonHtml = generatePistonRows(cylinderCountNum, shiftedFiringOrder);
   const el = generateElement(pistonHtml);
   row.prepend(el);
 });
@@ -198,7 +207,21 @@ cylinderCount.addEventListener('change', (event) => {
   }
 });
 
-cylinderCount.dispatchEvent(new Event('change'));
+cylinderCount.addEventListener('load', (event) => {
+  const firingOrder = document.querySelector('.firing-order-inputs');
+  let child = firingOrder.lastElementChild;
+  while (child) {
+    firingOrder.removeChild(child);
+    child = firingOrder.lastElementChild;
+  }
+
+  const cylinderCountNum = +cylinderCount.value;
+  for (let i = 0; i < cylinderCountNum; i++) {
+    firingOrder.append(generateFiringOrderInput(cylinderCountNum - i));
+  }
+});
+
+cylinderCount.dispatchEvent(new Event('load'));
 
 const opacitySelector = document.querySelector('#opacity');
 opacitySelector.addEventListener('change', (event) => {
