@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = [
   // Add support for native node modules
   {
@@ -16,6 +18,13 @@ module.exports = [
       },
     },
   },
+  {
+    test: /\.(svg|png|jpg|gif)$/,
+    include: [
+      path.resolve(__dirname, "/images")
+    ],
+    type: "asset/inline"
+  }
   // Put your webpack loader rules in this array.  This is where you would put
   // your ts-loader configuration for instance:
   /**

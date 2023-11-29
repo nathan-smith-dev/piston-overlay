@@ -10,7 +10,6 @@ module.exports = {
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        // The ICO file to use as the icon for the generated Setup.exe
         setupIcon: path.join(__dirname, './src/images/wave.ico'),
       },
     },
