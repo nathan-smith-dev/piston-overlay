@@ -8,11 +8,10 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   // Create the browser window.
-  console.log(path.join(__dirname, "../images/wave.ico"))
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: path.join(__dirname, "../images/wave.ico"),
+    icon: path.join(__dirname, '../images/wave.ico'),
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
