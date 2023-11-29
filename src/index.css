@@ -44,7 +44,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-right: 3px solid black;
 }
 
 .intake, .compression, .power, .exhaust {
@@ -52,6 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   flex: 1;
+  outline: 1px solid white;
 }
 
 .intake {

@@ -217,7 +217,8 @@ cylinderCount.addEventListener('load', (event) => {
 
   const cylinderCountNum = +cylinderCount.value;
   for (let i = 0; i < cylinderCountNum; i++) {
-    firingOrder.append(generateFiringOrderInput(cylinderCountNum - i));
+    // firingOrder.append(generateFiringOrderInput(cylinderCountNum - i));
+    firingOrder.append(generateFiringOrderInput());
   }
 });
 
