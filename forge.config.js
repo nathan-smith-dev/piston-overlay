@@ -3,14 +3,14 @@ const path = require('path');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: path.join(__dirname, './src/images/wave'),
+    icon: path.join(__dirname, './src/images/icon'),
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        setupIcon: path.join(__dirname, './src/images/wave.ico'),
+        setupIcon: path.join(__dirname, './src/images/icon.ico'),
       },
     },
     {

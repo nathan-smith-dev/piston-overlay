@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -8,15 +8,18 @@ if (require('electron-squirrel-startup')) {
 
 const createWindow = () => {
   // Create the browser window.
+  const ASSETS_PATH = app.isPackaged ?
+    path.join(process.resourcesPath, 'images') :
+    path.join(app.getAppPath(), `public${path.sep}assets`);
+  const iconPath = path.join(ASSETS_PATH, `images/icon.png`)
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: nativeImage.createFromPath(path.join(__dirname, './images/wave.png')),
+    icon: iconPath,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });
-  mainWindow.setIcon(nativeImage.createFromPath(path.join(__dirname, './images/wave.png')));
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
