@@ -48,10 +48,10 @@ body {
 }
 
 .intake, .compression, .power, .exhaust {
-  width: 25%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 }
 
 .intake {
