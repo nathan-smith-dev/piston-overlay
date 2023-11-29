@@ -23,7 +23,6 @@ const createWindow = () => {
   mainWindow.webContents.openDevTools();
 
   ipcMain.on('set-opacity', (event, opacity) => {
-    console.log('here');
     mainWindow.setOpacity(opacity / 100);
   });
 };
