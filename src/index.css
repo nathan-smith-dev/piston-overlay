@@ -79,7 +79,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  border-top: 1px solid hsla(0, 0%, 36%, 0.5);
 }
 
 .cyl-form-maximized {
