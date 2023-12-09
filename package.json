@@ -1,7 +1,7 @@
 {
   "name": "piston-overlay",
   "productName": "Piston Overlay",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Piston overlays used for waveform analysis.",
   "main": ".webpack/main",
   "scripts": {
@@ -39,5 +39,5 @@
       "from": "./public/assets",
       "to": "assets"
     }
-] 
+  ]
 }

@@ -1,30 +1,3 @@
-/**
- * This file will automatically be loaded by webpack and run in the "renderer" context.
- * To learn more about the differences between the "main" and the "renderer" context in
- * Electron, visit:
- *
- * https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes
- *
- * By default, Node.js integration in this file is disabled. When enabling Node.js integration
- * in a renderer process, please be aware of potential security implications. You can read
- * more about security risks here:
- *
- * https://electronjs.org/docs/tutorial/security
- *
- * To enable Node.js integration in this file, open up `main.js` and enable the `nodeIntegration`
- * flag:
- *
- * ```
- *  // Create the browser window.
- *  mainWindow = new BrowserWindow({
- *    width: 800,
- *    height: 600,
- *    webPreferences: {
- *      nodeIntegration: true
- *    }
- *  });
- * ```
- */
 import './index.css';
 
 const strokes = {
@@ -170,7 +143,7 @@ const generateFiringOrderInput = (defaultValue) => {
 };
 
 const cylinderCount = document.querySelector('#cylinder-count');
-const form = document.querySelector('#cyl-form');
+const form = document.querySelector('.cyl-form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -187,7 +160,10 @@ form.addEventListener('submit', (event) => {
     .querySelectorAll('.cyl-input')
     .forEach((el) => firingOrder.push(+el.value));
   const syncCylinder = document.querySelector('#sync-cyl');
-  const shiftedFiringOrder = shiftArrayBackwards(firingOrder, firingOrder.indexOf(+syncCylinder.value));
+  const shiftedFiringOrder = shiftArrayBackwards(
+    firingOrder,
+    firingOrder.indexOf(+syncCylinder.value)
+  );
   const pistonHtml = generatePistonRows(cylinderCountNum, shiftedFiringOrder);
   const el = generateElement(pistonHtml);
   row.prepend(el);
@@ -227,4 +203,39 @@ cylinderCount.dispatchEvent(new Event('load'));
 const opacitySelector = document.querySelector('#opacity');
 opacitySelector.addEventListener('change', (event) => {
   window.electronAPI.setOpacity(opacitySelector.value);
+});
+
+const formGroups = document.querySelectorAll('.form-group');
+const formHideSelector = document.querySelector('.minimize-btn');
+formHideSelector.addEventListener('click', (event) => {
+  if (formHideSelector.classList.contains('btn-show')) {
+    hideForm();
+  } else {
+    showForm();
+  }
+});
+
+const hideForm = () => {
+  formGroups.forEach((div) => div.classList.add('hidden'));
+  formHideSelector.classList.add('btn-hide');
+  formHideSelector.classList.remove('btn-show');
+  form.classList.remove('cyl-form-maximized');
+  form.classList.add('cyl-form-minimized');
+};
+
+const showForm = () => {
+  formHideSelector.classList.add('btn-show');
+  formGroups.forEach((div) => div.classList.remove('hidden'));
+  formHideSelector.classList.remove('btn-hide');
+  form.classList.add('cyl-form-maximized');
+  form.classList.remove('cyl-form-minimized');
+};
+
+window.electronAPI.onWindowResize((value) => {
+  const width = value[0];
+  if (width < 850) {
+    hideForm();
+  } else if (width > 850) {
+    showForm();
+  }
 });

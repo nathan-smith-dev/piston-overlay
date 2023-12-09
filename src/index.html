@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Piston Overlay (v0.0.1) by Nate Smith</title>
+    <title>Piston Overlay (v0.0.2) by Nate Smith</title>
   </head>
   <body>
     <div class="wrapper">
       <div class="container"></div>
-      <form id="cyl-form">
+      <form class="cyl-form cyl-form-maximized">
         <div class="cylinder-count form-group">
           <label for="cylinder-count"># of Cylinders:</label>
           <select name="cylinder-count" id="cylinder-count">
@@ -26,14 +26,14 @@
         <div class="form-group">
           <label for="sync-cyl">Sync:</label>
           <input
-              class="cyl-input-format"
-              pattern="\d{1}"
-              type="number"
-              maxlength="1"
-              name="sync-cyl"
-              id="sync-cyl"
-              value="1"
-            />
+            class="cyl-input-format"
+            pattern="\d{1}"
+            type="number"
+            maxlength="1"
+            name="sync-cyl"
+            id="sync-cyl"
+            value="1"
+          />
         </div>
         <div class="slidecontainer form-group">
           <label for="opacity">Opacity:</label>
@@ -49,6 +49,7 @@
         <div class="form-group">
           <button id="generate">Generate</button>
         </div>
+        <div class="noselect minimize-btn btn-show">&#171;</div>
       </form>
     </div>
   </body>

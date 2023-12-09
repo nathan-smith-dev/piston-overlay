@@ -10,6 +10,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -74,11 +75,19 @@ body {
   width: 1rem;
 }
 
-#cyl-form {
+.cyl-form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  border-top: 1px solid hsla(0, 0%, 36%, 0.5);
+}
+
+.cyl-form-maximized {
   justify-content: space-between;
+}
+
+.cyl-form-minimized {
+  justify-content: flex-end;
 }
 
 .firing-order {
@@ -142,6 +151,10 @@ select, input {
   padding: .5rem;
 }
 
+.hidden {
+  display: none;
+}
+
 .form-group label {
   color: #5b5b5b;
   font-size: .75rem;
@@ -152,6 +165,44 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.minimize-btn {
+  padding: 1rem;
+  color: #5b5b5b;
+  font-size: 1.5rem;
+  transition: rotate .2s linear;
+  justify-self: flex-end !important;
+}
+
+.minimize-btn:hover {
+  padding: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.btn-show {
+  rotate: -90deg;
+}
+
+.btn-hide {
+  rotate: 0deg;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 /* Firefox */
